@@ -5,7 +5,7 @@ public class Sprite {
 	public int width, height;
 	public int[] pixels;
 	
-	public Sprite(int width, int height, int color) {
+	public Sprite(int width, int height, int color) { //set the color width and size of the objects
 		this.width = width;
 		this.height = height;
 		this.pixels = new int[width * height];

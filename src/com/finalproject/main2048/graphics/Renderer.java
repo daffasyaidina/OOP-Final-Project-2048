@@ -7,7 +7,7 @@ public class Renderer {
     public static int width = Main.WIDTH, height = Main.HEIGHT;
     public static int[] pixels = new int[width * height];
 
-    public static void renderBackground() {
+    public static void renderBackground() { //set the looks of the background
         for(int y = 0; y < height; y++) {
             for(int x = 0; x < width; x++) {
                 pixels[x + y * width] = 0xff6d6d6d;
@@ -18,7 +18,7 @@ public class Renderer {
             }
         }
     }
-    public static void renderSprite(Sprite sprite, int xp, int yp) {
+    public static void renderSprite(Sprite sprite, int xp, int yp) { //set the color of the objects to tranparant
         if(xp < -sprite.width || xp > width || yp < -sprite.height || yp > height) return;
 
         for(int y = 0; y < sprite.height; y++) {

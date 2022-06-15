@@ -8,7 +8,7 @@ import com.finalproject.main2048.game.Game;
 import com.finalproject.main2048.graphics.Renderer;
 import com.finalproject.main2048.graphics.Sprite;
 
-public class GameObject {
+public class GameObject { //set the tiles value speed and rules
     
     public double x, y;
     public int width, height;
@@ -16,18 +16,18 @@ public class GameObject {
     public int value, speed = 8;
     public boolean moving = false, remove = false, hasMoved = false;
     
-    Random rand = new Random();
+    Random rand = new Random(); //create an object of random
 
-    public GameObject(double x, double y) {
+    public GameObject(double x, double y) { //set only 2 and 4 spawns randomly at different spots
         this.x = x;
         this.y = y;
-        this.value = (rand.nextBoolean() ? 2 : 4);
+        this.value = (rand.nextBoolean() ? 2 : 4); 
         createSprite();
         this.width = sprite.width;
         this.height = sprite.height;
     }
 
-    public void createSprite() {
+    public void createSprite() { //set the sprite number and color
         if(this.value == 2) {
             this.sprite = new Sprite(100, 100, 0xefe5db); 
         }else if(this.value == 4) {
@@ -56,7 +56,7 @@ public class GameObject {
 			this.sprite = new Sprite(100, 100, 0xEC4D58);
 		}
     }
-    public boolean canMove() {
+    public boolean canMove() { //determines if the object can move or not
         if(x < 0 || x + width > Main.WIDTH || y < 0 || y + height > Main.HEIGHT){
             return false;
         }
@@ -71,9 +71,9 @@ public class GameObject {
     }
 
 
-    public void update() {
+    public void update() { //update how the object is moving
         if(Game.moving) {
-            if(!hasMoved) {
+            if(!hasMoved) { 
                 hasMoved = true;
             }
             if(canMove()) {
@@ -93,7 +93,7 @@ public class GameObject {
         }
     }
 
-    public void render(){
+    public void render(){ //renders the sprite
         Renderer.renderSprite(sprite, (int) x, (int) y);
     }
    

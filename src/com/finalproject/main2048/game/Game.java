@@ -28,7 +28,7 @@ public class Game {
 		init();
 	}
 
-	public void init() {
+	public void init() { //to initialize an object after its created
 		objects = new ArrayList<GameObject>();
 		moving = false;
 		hasMoved = true;
@@ -36,7 +36,7 @@ public class Game {
 		spawn();
 	}
 
-	public void update() {
+	public void update() { //update the game when inputting R it will reset the game
 		if(Keyboard.keyUp(KeyEvent.VK_R)) {
 			init();
 		}
@@ -51,7 +51,7 @@ public class Game {
 	}
 	
 
-	private void checkForValueIncrease() {
+	private void checkForValueIncrease() { //double the value if the value is the same
 		for(int i = 0; i < objects.size(); i++) {
 			for(int j = 0; j < objects.size(); j++) {
 				if(i == j) continue;
@@ -68,7 +68,7 @@ public class Game {
 		System.out.println(objects.size());
 	}
 
-	private void spawn() {
+	private void spawn() { //this methods is used to spawn the tiles
 		if(objects.size() == 16) return;
 		
 		boolean available = false;
@@ -87,7 +87,7 @@ public class Game {
 		objects.add(new GameObject(x * 100, y * 100));
 	}
 
-	private void movingLogic() {
+	private void movingLogic() { //this method determines how the tiles is moving
 		somethingIsMoving = false;
 		for(int i = 0; i < objects.size(); i++) {
 			if(objects.get(i).moving) {
@@ -104,20 +104,20 @@ public class Game {
 			spawn();
 			hasMoved = false;
 		}
-		if(!moving && !hasMoved) {
-			if(Keyboard.keyDown(KeyEvent.VK_A)) {
+		if(!moving && !hasMoved) { //set the keybind to WASD
+			if(Keyboard.keyDown(KeyEvent.VK_A)) { // set move left with A
 				hasMoved = true;
 				moving = true;
 				dir = 0;
-			}else if(Keyboard.keyDown(KeyEvent.VK_D)) {
+			}else if(Keyboard.keyDown(KeyEvent.VK_D)) { //set move right with D
 				hasMoved = true;
 				moving = true;
 				dir = 1;
-			}else if(Keyboard.keyDown(KeyEvent.VK_W)) {
+			}else if(Keyboard.keyDown(KeyEvent.VK_W)) { //set move up with W
 				hasMoved = true;
 				moving = true;
 				dir = 2;
-			}else if(Keyboard.keyDown(KeyEvent.VK_S)) {
+			}else if(Keyboard.keyDown(KeyEvent.VK_S)) { //set move down with S
 				hasMoved = true;
 				moving = true;
 				dir = 3;
@@ -125,7 +125,7 @@ public class Game {
 		}
 	}
 	
-	public void render() {
+	public void render() { //renders the background
 		Renderer.renderBackground();
 
 		for(int i = 0; i < objects.size(); i++) {
@@ -137,10 +137,10 @@ public class Game {
 		}
 	}
 	
-	public void renderText(Graphics2D g) {
+	public void renderText(Graphics2D g) { //set the color, font and size  of the rendered text inside the tiles
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setFont(new Font("Verdana", 0, 100));
-		g.setColor(Color.BLACK);
+		g.setColor(Color.DARK_GRAY);
 		
 		for(int i = 0; i < objects.size(); i++) {
 			GameObject o = objects.get(i);

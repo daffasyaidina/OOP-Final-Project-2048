@@ -26,7 +26,7 @@ public class Main extends Canvas implements Runnable{
     public static BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     public static int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
-    public Main() {
+    public Main() { 
         setPreferredSize(new Dimension((int) (WIDTH * scale), (int) (HEIGHT * scale)));
         frame = new JFrame();
         game = new Game();
@@ -36,14 +36,14 @@ public class Main extends Canvas implements Runnable{
 
 
 
-    public void start() {
+    public void start() { //start a the thread or game loop
         running = true;
         thread = new Thread(this, "loopthread");
         thread.start();
 
     }
 
-    public void stop() {
+    public void stop() { // stop the thread
         try {
             thread.join();
         } catch (InterruptedException e) {
@@ -53,7 +53,7 @@ public class Main extends Canvas implements Runnable{
 
     }
 
-    public void run() {
+    public void run() { //update 60 times per second and render as many times as possible(depends on how strong the computer is)
         long lastTimeInNanoSeconds = System.nanoTime();
         long timer = System.currentTimeMillis();
         double nanoSecondsPerUpdate = 1000000000.0 / 60.0;
@@ -84,13 +84,13 @@ public class Main extends Canvas implements Runnable{
         
     }
 
-    public void update() {
+    public void update() {  //updates when the keybinds is pressed
         game.update();
         key.update();
 
     }
 
-    public void render() {
+    public void render() { //renders the background and numbers
         BufferStrategy bs = getBufferStrategy();
         if(bs == null) {
             createBufferStrategy(3);
@@ -108,7 +108,7 @@ public class Main extends Canvas implements Runnable{
 
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) { //the main method that creates the game window
         Main m = new Main();
         m.frame.setResizable(false);
         m.frame.setTitle("2048 FP");
